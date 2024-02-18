@@ -1,0 +1,23 @@
+{
+  "en_US": {
+    "names": {
+      "en_US": "English (United States)",
+      "es_MX": "Spanish (Mexico)",
+      "pt_BR": "Portuguese (Brazil)"
+    }
+  },
+  "es_MX": {
+    "names": {
+      "en_US": "Inglés (Estados Unidos)",
+      "es_MX": "Español (México)",
+      "pt_BR": "Portugués (Brasil)"
+    }
+  },
+  "pt_BR": {
+    "names": {
+      "en_US": "Inglês (Estados Unidos)",
+      "es_MX": "Espanhol (México)",
+      "pt_BR": "Português (Brasil)"
+    }
+  }
+}
