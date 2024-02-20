@@ -6,12 +6,15 @@ namespace languages\xchillz\langs;
 
 use languages\xchillz\exception\LanguageNotFoundException;
 use languages\xchillz\LanguageAPI;
+use pocketmine\Server;
 
 final class LanguageManager
 {
 
     /** @var array<string, Language> */
     private $languages = [];
+    /** @var Language */
+    private $defaultLanguage = null;
 
     public function __construct()
     {
@@ -24,8 +27,20 @@ final class LanguageManager
             }
 
             $language = new Language($langId, $langData['names']);
+
             $this->languages[$langId] = $language;
+
+            if ($langsData['default'] ?? false) {
+                $this->defaultLanguage = $language;
+            }
+
             LanguageAPI::getInstance()->getLogger()->info("$langId language was loaded!");
+        }
+
+        if ($this->defaultLanguage === null) {
+            LanguageAPI::getInstance()->getLogger()->critical("Default language was not set. Set it before turn it on.");
+            Server::getInstance()->getPluginManager()->disablePlugin(LanguageAPI::getInstance());
+            return;
         }
 
         LanguageAPI::getInstance()->getLogger()->info(sizeof($this->languages) . " languages were loaded!");
@@ -43,6 +58,11 @@ final class LanguageManager
 
             $this->languages[$langId]->addMessages($messages);
         }
+    }
+
+    public function getDefaultLanguage(): Language
+    {
+        return $this->defaultLanguage;
     }
 
     /**
