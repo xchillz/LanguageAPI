@@ -30,7 +30,7 @@ final class LanguageManager
 
             $this->languages[$langId] = $language;
 
-            if ($langsData['default'] ?? false) {
+            if ($langData['default'] ?? false) {
                 $this->defaultLanguage = $language;
             }
 
